@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GYMSLOP — Built by AI. Worn by Humans.</title>
+<meta name="description" content="AI-native gymwear. 404: MUSCLE NOT FOUND tee, TRAINING MODEL hoodie, SLOP_ cap. Printed on demand, drop 001.">
+<meta property="og:title" content="GYMSLOP — Built by AI. Worn by Humans.">
+<meta property="og:description" content="Gymwear for people who debug life and deadlift anyway. Drop 001.">
+<meta property="og:image" content="assets/og.png">
+<link rel="icon" href="assets/avatar.png">
+<style>
+  :root{
+    --black:#000; --acid:#C8FF00; --white:#fff;
+    --grey:#8a8a8a; --line:#1e1e1e; --card:#0b0b0b;
+    --mono: ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--black);color:var(--white);font-family:var(--mono);
+    -webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+  /* ---------- nav ---------- */
+  nav{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.86);
+      backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  nav img{height:22px;width:auto;display:block}
+  nav .links{display:flex;gap:22px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}
+  nav .links a{text-decoration:none}
+  nav .links a:hover{color:var(--acid)}
+
+  /* ---------- hero ---------- */
+  header{padding:clamp(56px,10vw,120px) 0 clamp(40px,6vw,72px);
+         border-bottom:1px solid var(--line)}
+  .kicker{font-size:11px;letter-spacing:.32em;color:var(--acid);text-transform:uppercase;margin:0 0 26px}
+  h1{font-size:clamp(38px,8vw,86px);line-height:.95;letter-spacing:-.03em;margin:0;font-weight:bold}
+  h1 .cur{color:var(--acid)}
+  .sub{margin:26px 0 0;max-width:44ch;font-size:clamp(14px,1.6vw,17px);line-height:1.65;color:#cfcfcf}
+  .cta{display:inline-flex;align-items:center;gap:14px;margin-top:38px;padding:17px 26px;
+       background:var(--acid);color:#000;font-weight:bold;letter-spacing:.1em;font-size:13px;
+       text-transform:uppercase;text-decoration:none;border:0;cursor:pointer}
+  .cta:hover{background:#dcff4d}
+  .cta.ghost{background:none;color:var(--acid);border:1px solid var(--acid);margin-left:10px}
+  .cta.ghost:hover{background:rgba(200,255,0,.08)}
+  .hero-art{margin-top:52px;border:1px solid var(--line);background:var(--card);padding:clamp(18px,4vw,44px)}
+  .hero-art img{width:100%;height:auto;display:block}
+
+  /* ---------- drop ---------- */
+  section{padding:clamp(56px,8vw,96px) 0}
+  .sechead{display:flex;align-items:baseline;justify-content:space-between;gap:20px;
+           border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:36px;flex-wrap:wrap}
+  .sechead h2{font-size:clamp(18px,2.6vw,26px);letter-spacing:.04em;margin:0;font-weight:bold}
+  .sechead span{font-size:11px;letter-spacing:.22em;color:var(--grey);text-transform:uppercase}
+
+  .grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .card{background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column}
+  .card .shot{aspect-ratio:4/5;display:grid;place-items:center;padding:26px;
+              background:radial-gradient(120% 90% at 50% 20%,#141414,#000)}
+  .card .shot img{max-width:100%;max-height:100%;height:auto;width:auto}
+  .card .body{padding:20px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:10px;flex:1}
+  .card h3{margin:0;font-size:14px;letter-spacing:.06em;line-height:1.4}
+  .card .meta{font-size:11px;letter-spacing:.16em;color:var(--grey);text-transform:uppercase}
+  .card .price{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:8px}
+  .card .price b{font-size:18px}
+  .buy{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+       padding:11px 14px;background:none;border:1px solid var(--acid);color:var(--acid);
+       cursor:pointer;text-decoration:none;white-space:nowrap}
+  .buy:hover{background:var(--acid);color:#000}
+  .buy[data-off]{border-color:var(--line);color:var(--grey);cursor:not-allowed}
+  .buy[data-off]:hover{background:none;color:var(--grey)}
+
+  /* ---------- statement ---------- */
+  .statement{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .statement p{font-size:clamp(20px,3.4vw,34px);line-height:1.35;letter-spacing:-.01em;max-width:22ch;margin:0}
+  .statement em{color:var(--acid);font-style:normal}
+
+  /* ---------- facts strip ---------- */
+  .facts{display:grid;gap:1px;background:var(--line);grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+  .fact{background:var(--black);padding:26px 20px}
+  .fact h4{margin:0 0 8px;font-size:11px;letter-spacing:.2em;color:var(--acid);text-transform:uppercase}
+  .fact p{margin:0;font-size:13px;line-height:1.6;color:#c4c4c4}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:44px 0 60px;font-size:12px;color:var(--grey)}
+  footer .cols{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap}
+  footer a{text-decoration:none;display:block;margin-bottom:9px}
+  footer a:hover{color:var(--acid)}
+  .fine{margin-top:34px;font-size:11px;line-height:1.7;max-width:70ch;color:#6f6f6f}
+
+  /* ---------- notify bar ---------- */
+  @media (max-width:560px){
+    nav .links a:not(:last-child){display:none}
+    nav .links{font-size:11px;letter-spacing:.1em}
+    .cta{width:100%;justify-content:center;margin-left:0}
+    .cta.ghost{margin-left:0;margin-top:12px}
+  }
+
+  .bar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--acid);color:#000;
+       padding:12px 18px;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
+       text-align:center;font-weight:bold}
+  .bar a{text-decoration:underline}
+  body{padding-bottom:48px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" aria-label="GYMSLOP home"><img src="assets/logo-transparent.png" alt="GYMSLOP"></a>
+    <div class="links">
+      <a href="#drop">Drop 001</a>
+      <a href="#facts">Shipping</a>
+      <a href="https://www.instagram.com/gymslop.fit/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap">
+    <p class="kicker">Drop 001 — 3 pieces, made to order</p>
+    <h1>GYMSLOP<span class="cur">_</span></h1>
+    <p class="sub">Built by AI. Worn by Humans. Gymwear for people who debug life and deadlift anyway.</p>
+    <a class="cta" id="heroCta" href="#drop">Shop Drop 001</a>
+    <a class="cta ghost" href="https://www.instagram.com/gymslop.fit/" target="_blank" rel="noopener">Instagram</a>
+
+    <div class="hero-art">
+      <img src="assets/hero-404.png" alt="404: MUSCLE NOT FOUND — terminal window chest print">
+    </div>
+  </div>
+</header>
+
+<section id="drop">
+  <div class="wrap">
+    <div class="sechead">
+      <h2>DROP 001</h2>
+      <span id="dropState">Launching soon</span>
+    </div>
+    <div class="grid">
+
+      <article class="card">
+        <div class="shot"><img src="assets/404-tee.png" alt="404: MUSCLE NOT FOUND tee print"></div>
+        <div class="body">
+          <h3>404: MUSCLE NOT FOUND</h3>
+          <p class="meta">Heavyweight tee · garment-dyed · black</p>
+          <div class="price"><b>$32</b><a class="buy" data-sku="tee" href="#" data-off>Notify me</a></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="shot"><img src="assets/hoodie.png" alt="TRAINING MODEL hoodie print"></div>
+        <div class="body">
+          <h3>TRAINING MODEL</h3>
+          <p class="meta">Heavy blend hoodie · black · unisex</p>
+          <div class="price"><b>$55</b><a class="buy" data-sku="hoodie" href="#" data-off>Notify me</a></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="shot"><img src="assets/cap.png" alt="SLOP_ embroidered dad cap"></div>
+        <div class="body">
+          <h3>SLOP_</h3>
+          <p class="meta">Embroidered dad cap · one size</p>
+          <div class="price"><b>$28</b><a class="buy" data-sku="cap" href="#" data-off>Notify me</a></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="statement">
+  <div class="wrap">
+    <p>AI-native gymwear.<br>Human-sized problems.<br><em>Terminal-level humour.</em></p>
+  </div>
+</section>
+
+<section id="facts">
+  <div class="wrap">
+    <div class="facts">
+      <div class="fact"><h4>Made to order</h4><p>Nothing sits in a warehouse. Your piece is printed after you order it.</p></div>
+      <div class="fact"><h4>Production</h4><p>2–5 business days, then shipping. No fake express promises.</p></div>
+      <div class="fact"><h4>Sizes</h4><p>Unisex fit. Exact size range shown per colour on the product page.</p></div>
+      <div class="fact"><h4>Returns</h4><p>Misprints and damaged items replaced free. Buyer's-remorse returns not accepted on made-to-order goods.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a href="#drop">Drop 001</a>
+        <a href="#facts">Shipping &amp; returns</a>
+        <a href="https://www.instagram.com/gymslop.fit/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <div>
+        <a href="policies/privacy.html">Privacy</a>
+        <a href="policies/terms.html">Terms</a>
+        <a href="mailto:hello@gymslop.fit">hello@gymslop.fit</a>
+      </div>
+    </div>
+    <p class="fine">GYMSLOP is an independent design studio. Products are produced and shipped by a print-on-demand partner; that partner is disclosed on every listing.
+      Prices in USD. Colours may vary slightly between screens and fabric. No shark imagery was harmed in the making of this brand.</p>
+  </div>
+</footer>
+
+<div class="bar" id="bar">Drop 001 is not live yet — <a href="https://www.instagram.com/gymslop.fit/" target="_blank" rel="noopener">follow @gymslop.fit for the drop</a></div>
+
+<script>
+/* ── flip the store live in one place ──────────────────────────────────
+   Paste the Etsy shop URL (and per-SKU listing URLs) here when live.
+   Everything on the page re-points itself. Empty string = "Notify me". */
+const SHOP = {
+  etsyShop: "",                      // e.g. "https://www.gymslop.fit/shop" or the Etsy shop URL
+  listings: { tee: "", hoodie: "", cap: "" }
+};
+(function () {
+  const live = !!SHOP.etsyShop;
+  document.getElementById("dropState").textContent = live ? "Live now" : "Launching soon";
+  document.getElementById("bar").style.display = live ? "none" : "block";
+  document.body.style.paddingBottom = live ? "0" : "48px";
+
+  const hero = document.getElementById("heroCta");
+  if (live) { hero.href = SHOP.etsyShop; hero.textContent = "Shop Drop 001"; hero.target = "_blank"; hero.rel = "noopener"; }
+
+  document.querySelectorAll(".buy").forEach(function (b) {
+    const url = SHOP.listings[b.dataset.sku] || SHOP.etsyShop;
+    if (url) {
+      b.href = url; b.target = "_blank"; b.rel = "noopener";
+      b.textContent = "Buy"; b.removeAttribute("data-off");
+    } else {
+      b.href = "https://www.instagram.com/gymslop.fit/";
+      b.target = "_blank"; b.rel = "noopener";
+      b.textContent = "Notify me";
+    }
+  });
+})();
+</script>
+</body>
+</html>
